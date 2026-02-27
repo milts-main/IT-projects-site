@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Презентации</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Список презентаций</h1>
+
+{% for file in files %}
+<div class="card">
+    <h3>{{ file }}</h3>
+
+    <iframe 
+      src="{{ url_for('static', filename='presentations/' + file) }}"
+      width="600" height="400">
+    </iframe>
+
+    <br><br>
+
+    <a href="{{ url_for('download_file', filename=file) }}">
+        Скачать
+    </a>
+</div>
+{% endfor %}
+
+</body>
+</html>
