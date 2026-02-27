@@ -1,29 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Презентации</title>
+    <meta charset="UTF-8">
+    <title>Библиотека презентаций</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<h1>Список презентаций</h1>
+<header>
+    <h1> Библиотека презентаций</h1>
+</header>
+
+<div class="grid">
 
 {% for file in files %}
 <div class="card">
-    <h3>{{ file }}</h3>
+    <div class="icon">
+        📄
+    </div>
 
-    <iframe 
-      src="{{ url_for('static', filename='presentations/' + file) }}"
-      width="600" height="400">
-    </iframe>
+    <div class="card-title">
+        {{ file }}
+    </div>
 
-    <br><br>
+    <div class="buttons">
+        <a class="btn view"
+           href="{{ url_for('static', filename='presentations/' + file) }}"
+           target="_blank">
+           Открыть
+        </a>
 
-    <a href="{{ url_for('download_file', filename=file) }}">
-        Скачать
-    </a>
+        <a class="btn download"
+           href="{{ url_for('download_file', filename=file) }}">
+           Скачать
+        </a>
+    </div>
 </div>
 {% endfor %}
+
+</div>
 
 </body>
 </html>
